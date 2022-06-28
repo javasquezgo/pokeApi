@@ -5,13 +5,54 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <title>PokeDex</title>
-
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div id="app"></div>
-  <script type="module" src="/main.js"></script>
+
+  <div class="container">
+    <div class="pokedex-container">
+      <div class="pokedex-header">
+        <img src="./assets/pokeball-icon.svg" alt="Pokéball">
+        <h1>PokéDex</h1>
+      </div>
+
+      <div class="pokedex-main">
+
+        <div class="poke-container">
+
+        </div>
+
+        <!-- <div class="pokemon">
+          <p class="pokemon-id">#000</p>
+          <img class="pokemon-image"
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
+            alt="">
+          <div class="poke-text">
+            <h4 class="pokemon-name">Bulbasaur</h4>
+          </div>
+
+        </div>
+        
+        <div class="pokemon">
+          <p class="pokemon-id">#000</p>
+          <img class="pokemon-image"
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
+            alt="">
+          <div class="poke-text">
+            <h4 class="pokemon-name">Bulbasaur</h4>
+          </div>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script type="module" src="./main.js"></script>
 </body>
 
 </html>

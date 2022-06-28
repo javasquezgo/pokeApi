@@ -1,8 +1,78 @@
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: content-box;
 }
+
+body{
+  font-family: 'Poppins', sans-serif;
+  font-size: 62.5%;
+}
+
+.container{
+  width: 360px;
+  height: 640px;
+  margin: 20px auto 0;
+  border: 1px black solid;
+}
+
+.pokedex-container{
+  padding: 16px;
+}
+
+.pokedex-header{
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.pokedex-header h1,
+.pokedex-header img{
+  margin-right: 16px;
+  font-size: 2.4rem;
+  width: 2.4rem;
+}
+
+.pokedex-main{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  justify-content: space-between;
+  overflow: scroll;
+}
+
+.pokemon{
+  width: 90px;
+  height: 112px;
+  border-radius: 8px;
+  border: 1px solid #74CB48;
+  margin-bottom: 50px;
+}
+
+.pokemon-id{
+  text-align: right;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+.pokemon-image{
+  width: 72px;
+  height: 72px;
+  display: block;
+  margin: 5px auto 0;
+}
+
+.poke-text{
+  height: auto;
+  width: 100%;
+  background: #74CB48;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.pokemon-name{
+  text-align: center;
+  padding-top:4px;  
+  text-transform: capitalize;
+}
+
