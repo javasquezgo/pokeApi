@@ -17,7 +17,7 @@ body{
 }
 
 .pokedex-container{
-  padding: 16px;
+  padding: 12px 12px 0 12px;
 }
 
 .pokedex-header{
@@ -38,7 +38,10 @@ body{
   flex-wrap: wrap;
   margin: 0 auto;
   justify-content: space-between;
-  overflow: scroll;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 551px;
 }
 
 .pokemon{

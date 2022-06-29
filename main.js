@@ -29,17 +29,21 @@ function createPokemon(pokemon) {
   pokemonDiv.className = "pokemon";
   pokemonDiv.addEventListener("click", () => {
     console.log(pokemon.name);
+    Swal.fire({
+      title: `You choose `,
+      text: `${pokemon.name}`,
+      imageUrl: `${pokemon.sprites.front_default}`,
+      imageSize: "192x192",
+      confirmButtonText: "Cool",
+    });
   });
 
   pokemonDiv.appendChild(pokeId);
   pokemonDiv.appendChild(pokeImage);
   pokemonDiv.appendChild(pokeText);
 
-  const pokemoMainDiv = document.querySelector(".pokedex-main");
-  pokemoMainDiv.appendChild(pokemonDiv);
-
-  const pokeContainer = document.querySelector(".poke-container");
-  pokeContainer.appendChild(pokemoMainDiv);
+  const pokemonMainDiv = document.querySelector(".pokedex-main");
+  pokemonMainDiv.appendChild(pokemonDiv);
 }
 
 async function fetchPokemon() {
