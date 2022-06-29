@@ -5,6 +5,13 @@ const api = axios.create({
   },
 });
 
+//Funcion para devolver la
+//primera letra de una
+//palabra en mayuscla
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 //Esta funcion fue creada solo para
 //llamarla y crear pokemon dentro de la
 //pokedex
@@ -31,9 +38,10 @@ function createPokemon(pokemon) {
     console.log(pokemon.name);
     Swal.fire({
       title: `You choose `,
-      text: `${pokemon.name}`,
+      text: `${capitalizeFirstLetter(pokemon.name)}`,
       imageUrl: `${pokemon.sprites.front_default}`,
-      imageSize: "192x192",
+      imageHeight: 196,
+      imageWidth: 196,
       confirmButtonText: "Cool",
     });
   });
