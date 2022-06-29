@@ -42,7 +42,7 @@ function createPokemon(pokemon) {
       imageUrl: `${pokemon.sprites.front_default}`,
       imageHeight: 196,
       imageWidth: 196,
-      confirmButtonText: "Cool",
+      confirmButtonText: "Exit",
     });
   });
 
