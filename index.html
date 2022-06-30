@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
@@ -10,7 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <title>PokeDex</title>
   <link rel="stylesheet" href="style.css">
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -18,35 +19,16 @@
   <div class="container">
     <div class="pokedex-container">
       <div class="pokedex-header">
-        <img src="./assets/pokeball-icon.svg" alt="Pokéball">
-        <h1>PokéDex</h1>
+        <div class="pokedex-header--div">
+          <img src="./assets/pokeball-icon.svg" alt="Pokéball">
+          <h1>PokéDex</h1>
+        </div>
+        <i class="ri-menu-line ri-xl"></i>
       </div>
 
       <div class="screen-container">
 
         <div class="pokedex-main">
-
-
-          <!-- <div class="pokemon">
-            <p class="pokemon-id">#000</p>
-            <img class="pokemon-image"
-              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-              alt="">
-            <div class="poke-text">
-              <h4 class="pokemon-name">Bulbasaur</h4>
-            </div>
-  
-          </div>
-          
-          <div class="pokemon">
-            <p class="pokemon-id">#000</p>
-            <img class="pokemon-image"
-              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-              alt="">
-            <div class="poke-text">
-              <h4 class="pokemon-name">Bulbasaur</h4>
-            </div>
-          </div> -->
 
         </div>
 
@@ -56,8 +38,12 @@
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <script type="module" src="./main.js"></script>
+
+
+  <script type="module" src="./src/main.js"></script>
+  <script src="./src/navigation.js"></script>
 </body>
 
 </html>

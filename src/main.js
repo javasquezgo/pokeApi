@@ -54,12 +54,26 @@ function createPokemon(pokemon) {
   pokemonMainDiv.appendChild(pokemonDiv);
 }
 
-async function fetchPokemon() {
+/* async function fetchPokemon() {
   for (let poke = 1; poke <= 151; poke++) {
     const { data } = await api(`pokemon/${poke}`);
 
     createPokemon(data);
   }
+} */
+
+async function filterTypePokemon(type) {
+  for (let poke = 1; poke <= 151; poke++) {
+    const { data } = await api(`pokemon/${poke}`);
+
+    const typePokemon = data.types;
+
+    typePokemon.forEach((pokemon) => {
+      if (pokemon.type.name === type) {
+        createPokemon(data);
+      }
+    });
+  }
 }
 
-fetchPokemon();
+filterTypePokemon("fire");
