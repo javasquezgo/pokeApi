@@ -1,3 +1,10 @@
+window.addEventListener("DOMContentLoaded", navigator, false);
+window.addEventListener("hashchange", navigator, false);
+
+const menuBtn = document.querySelector(".pokedex-header i");
+const pokemonTypesContainer = document.querySelector(".pokemon--types");
+const pokemonMainDiv = document.querySelector(".pokedex-main");
+
 const api = axios.create({
   baseURL: "https://pokeapi.co/api/v2/",
   headers: {
@@ -5,16 +12,14 @@ const api = axios.create({
   },
 });
 
-//Funcion para devolver la
-//primera letra de una
+//Funcion para devolver la primera letra de una
 //palabra en mayuscla
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-//Esta funcion fue creada solo para
-//llamarla y crear pokemon dentro de la
-//pokedex
+//Esta funcion fue creada solo para llamarla y
+//crear pokemon dentro de la pokedex
 function createPokemon(pokemon) {
   const pokeId = document.createElement("p");
   pokeId.className = "pokemon-id";
@@ -50,19 +55,38 @@ function createPokemon(pokemon) {
   pokemonDiv.appendChild(pokeImage);
   pokemonDiv.appendChild(pokeText);
 
-  const pokemonMainDiv = document.querySelector(".pokedex-main");
   pokemonMainDiv.appendChild(pokemonDiv);
 }
 
-/* async function fetchPokemon() {
+async function fetchTypes() {
+  const { data } = await api("type");
+  const types = data.results;
+
+  const pokemonTypesSection = document.querySelector(".pokemon--types");
+
+  types.forEach((type) => {
+    const tagA = document.createElement("a");
+    const tagSpan = document.createElement("span");
+    tagSpan.textContent = type.name;
+    tagA.appendChild(tagSpan);
+    pokemonTypesSection.appendChild(tagA);
+    tagSpan.addEventListener("click", () => {
+      location.hash = `type=${type.name}`;
+    });
+  });
+}
+
+async function fetchPokemon() {
+  pokemonMainDiv.innerHTML = "";
   for (let poke = 1; poke <= 151; poke++) {
     const { data } = await api(`pokemon/${poke}`);
 
     createPokemon(data);
   }
-} */
+}
 
 async function filterTypePokemon(type) {
+  pokemonMainDiv.innerHTML = "";
   for (let poke = 1; poke <= 151; poke++) {
     const { data } = await api(`pokemon/${poke}`);
 
@@ -76,4 +100,26 @@ async function filterTypePokemon(type) {
   }
 }
 
-filterTypePokemon("fire");
+menuBtn.addEventListener("click", () => {
+  pokemonTypesContainer.classList.toggle("invisible");
+});
+
+function navigator() {
+  if (location.hash.startsWith("#type=")) {
+    typePage();
+  } else {
+    homePage();
+  }
+}
+
+function homePage() {
+  fetchPokemon();
+}
+
+function typePage() {
+  console.log("Estamos con un tipo de pokemon");
+  const [_, pokemonType] = location.hash.split("=");
+  filterTypePokemon(pokemonType);
+}
+
+fetchTypes();

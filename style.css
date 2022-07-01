@@ -9,6 +9,8 @@ body{
   font-size: 62.5%;
 }
 
+
+
 .container{
   width: 100%;
   max-width: 360px;
@@ -45,6 +47,27 @@ body{
   font-size: 48px;
 }
 
+.pokemon--types{
+  margin: 40px 0;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pokemon--types.invisible{
+  display: none;
+}
+
+.pokemon--types a{
+  margin: 10px 0;
+}
+
+.pokemon--types a span{
+  border: 1px black solid;
+  padding: 8px 12px;
+  border-radius: 15px;
+  text-transform: capitalize;
+}
 
 .pokedex-main{
   display: flex;
