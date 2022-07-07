@@ -19,11 +19,13 @@ const api = axios.create({
 
 //Eventos addEventListener
 menuBtn.addEventListener("click", () => {
+  fetchTypes();
   pokemonTypesContainer.classList.toggle("invisible");
 });
 
 pokedexHeader.addEventListener("click", () => {
-  history.back();
+  location.hash = "";
+  location.reload();
 });
 
 //Funciones
@@ -70,12 +72,11 @@ function createPokemon(pokemon) {
 //por medio del location.hash
 function navigator() {
   console.log("se movio a " + location.hash);
+
   if (location.hash.startsWith("#type=")) {
     typePage();
   } else if (location.hash.startsWith("#pokemon=")) {
     pokemonPage();
-  } else if (location.hash.startsWith("#")) {
-    homePage();
   } else {
     homePage();
   }
@@ -127,7 +128,11 @@ async function fetchPokemon() {
   for (let poke = 1; poke <= 151; poke++) {
     const { data } = await api(`pokemon/${poke}`);
 
-    pokemonTotal.push(data);
+    if (poke < 30) {
+      createPokemon(data);
+    } else {
+      pokemonTotal.push(data);
+    }
   }
   await Promise.all(pokemonTotal).then((allPokemon) => {
     allPokemon.forEach((pokemon) => {
@@ -155,15 +160,13 @@ async function createPokemonOne(pokemonOne) {
   const { data } = await api(`pokemon/${pokemonOne}`);
   const stats = data.stats;
 
-  const valueStats = [];
-  for (let i = 0; i < stats.length; i++) {
-    valueStats.push(stats[i].base_stat);
-  }
+  const valueStats = stats.map((stat) => {
+    return stat.base_stat;
+  });
 
-  const nameStats = [];
-  for (let i = 0; i < stats.length; i++) {
-    nameStats.push(stats[i].stat.name);
-  }
+  const nameStats = stats.map((stat) => {
+    return stat.stat.name;
+  });
 
   //Los elementos del DOM
   const h2 = document.createElement("h2");
@@ -172,16 +175,18 @@ async function createPokemonOne(pokemonOne) {
   const img = document.querySelector("img");
   img.setAttribute("src", data.sprites.front_default);
   img.setAttribute("alt", data.name);
+  img.className = "pokemon-one-img";
 
   const h3 = document.createElement("h3");
   h3.innerText = "Types";
 
   const ul = document.createElement("ul");
 
-  const canvasU = document.getElementById("miGrafica").getContext("2d");
+  const canvasAdd = document.createElement("canvas");
+  canvasAdd.getContext("2d");
+  canvasAdd.className = "canvas";
 
   const pokemonTypes = data.types;
-
   pokemonTypes.forEach((type) => {
     const li = document.createElement("li");
     li.innerText = type.type.name;
@@ -197,7 +202,7 @@ async function createPokemonOne(pokemonOne) {
   pokemonInfo.appendChild(ul);
   pokemonInfo.appendChild(h3Stat);
 
-  const canvasChar = new Chart(canvasU, {
+  const canvasChar = new Chart(canvasAdd, {
     type: "bar",
     data: {
       labels: nameStats,
@@ -210,6 +215,6 @@ async function createPokemonOne(pokemonOne) {
       ],
     },
   });
-}
 
-fetchTypes();
+  pokemonInfo.appendChild(canvasAdd);
+}
