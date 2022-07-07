@@ -15,7 +15,8 @@ html{
   height: 99vh;
   margin: 0 auto;
   border: 1px black solid;
-  overflow-y: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 .pokedex-container{
@@ -70,15 +71,23 @@ html{
   cursor:pointer;
 }
 
+.screen-container{
+  display: flex;
+  justify-content: center;
+  
+}
+
 .pokedex-main{
+  position: absolute;
+  z-index: 0;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
   margin: 0 auto;
   justify-content: space-between;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
+  width: 95%;
+  height: 70vh;
+  overflow-y: scroll;
   overflow-x: hidden;
 }
 
@@ -88,7 +97,7 @@ html{
 
 .pokemon{
   width: 90px;
-  height: 137px;
+  height: 124px;
   border-radius: 8px;
   border: 1px solid #74CB48;
   margin-bottom: 10px;
@@ -102,8 +111,8 @@ html{
 }
 
 .pokemon-image{
-  width: 72px;
-  height: 72px;
+  width: 80px;
+  height: 80px;
   display: block;
   margin: 5px auto 0;
 }

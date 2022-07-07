@@ -9,6 +9,8 @@ const pokemonMainDiv = document.querySelector(".pokedex-main");
 const pokedexHeader = document.querySelector(".pokedex-header--div");
 const pokemonInfo = document.querySelector(".pokemon-info");
 
+let countPokemonTotal = 151;
+
 //Consulta a la api
 const api = axios.create({
   baseURL: "https://pokeapi.co/api/v2/",
@@ -19,7 +21,6 @@ const api = axios.create({
 
 //Eventos addEventListener
 menuBtn.addEventListener("click", () => {
-  fetchTypes();
   pokemonTypesContainer.classList.toggle("invisible");
 });
 
@@ -44,6 +45,7 @@ function createPokemon(pokemon) {
   pokeId.textContent = pokemon.id;
 
   const pokeImage = document.createElement("img");
+  pokeImage.className = "pokemon-image";
   pokeImage.setAttribute("src", pokemon.sprites.front_default);
 
   const pokeText = document.createElement("div");
@@ -125,10 +127,10 @@ async function fetchTypes() {
 async function fetchPokemon() {
   pokemonMainDiv.innerHTML = "";
   const pokemonTotal = [];
-  for (let poke = 1; poke <= 151; poke++) {
+  for (let poke = 1; poke <= countPokemonTotal; poke++) {
     const { data } = await api(`pokemon/${poke}`);
 
-    if (poke < 30) {
+    if (poke < 35) {
       createPokemon(data);
     } else {
       pokemonTotal.push(data);
@@ -218,3 +220,5 @@ async function createPokemonOne(pokemonOne) {
 
   pokemonInfo.appendChild(canvasAdd);
 }
+
+fetchTypes();
